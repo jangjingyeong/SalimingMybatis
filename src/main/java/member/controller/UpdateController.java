@@ -45,15 +45,15 @@ public class UpdateController extends HttpServlet {
 		Member member = new Member(memberId, memberPw, memberPw2, memberNickname, memberPhone, memberEmail, memberAddress);
 		// UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_EMAIL = ?, MEMBER_PHONE = ?, MEMBER_ADDRESS = ?, MEMBER_HOBBY = ?, UPDATE_DATE = DEFAULT WHERE MEMBER_ID = ?
 		MemberService service = new MemberService();
-//		int result = service.updateMember(member);
-//		if(result > 0) {
-//			// 성공하면 메인페이지
-//			request.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(request, response);
-//		} else {
-//			// 실패하면 에러페이지
-//			request.setAttribute("msg", "회원 수정이 완료되지 않았습니다.");
-//			request.getRequestDispatcher("/WEB-INF/views/serviceFailed.jsp").forward(request, response);
-//		}
+		int result = service.updateMember(member);
+		if(result > 0) {
+			// 성공하면 메인페이지
+			request.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(request, response);
+		} else {
+			// 실패하면 에러페이지
+			request.setAttribute("msg", "회원 수정이 완료되지 않았습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed.jsp").forward(request, response);
+		}
 	}
 
 	/**

@@ -34,13 +34,21 @@ public class ListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NoticeService service = new NoticeService();
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String page = request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1";
+		int currentPage = Integer.parseInt(page);
 		PageData pd = service.selectNoticeList(currentPage);
 		List<Notice> nList = pd.getnList();
-		request.setAttribute("nList", nList);
-		request.setAttribute("pageNavi", pd.getPageNavi());
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/help/list.jsp");
-		view.forward(request, response);
+		String pageNavi = pd.getPageNavi();
+		if(!nList.isEmpty()) {
+			request.setAttribute("nList", nList);
+			request.setAttribute("pageNavi", pd.getPageNavi());
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/help/list.jsp");
+			view.forward(request, response);
+		} else {
+			request.setAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
+			request.setAttribute("url", "/index.jsp");
+			request.getRequestDispatcher("/WEB-INF/views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**

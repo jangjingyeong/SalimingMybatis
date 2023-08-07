@@ -43,7 +43,7 @@ public class DetailController extends HttpServlet {
 		} else {
 			// 실패페이지로 이동
 			request.setAttribute("msg", "데이터가 존재하지 않습니다.");
-			request.getRequestDispatcher("/WEB-INF/views/serviceFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed.jsp").forward(request, response);
 		}
 	}
 

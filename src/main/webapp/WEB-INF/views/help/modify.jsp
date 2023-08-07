@@ -36,36 +36,36 @@
                 <section id="section">
 
                     <div>
-                        <div id="sharetitle">공지사항 상세</div>
+                        <div id="sharetitle">공지사항 수정</div>
                     </div>
                     <div>
-	                    <table class="boardtable">
-	                    	<tr>
-								<td>
-									<label>글번호</label>
-									<span>${requestScope.noticeOne.noticeNo }</span>
-								</td>
-								<td>
-									<label>작성일</label>
-									<span>${requestScope.noticeOne.noticeDate }</span>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<label><b>제목 : ${noticeOne.noticeSubject }</b></label>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<label><b>내용 : </b></label>
-									<p>${noticeOne.noticeContent }</p>
-								</td>							
-							</tr>
-	                    </table>
-	                      <c:if test="${memberId eq 'admin' }">
-		                    <a href="/notice/modify.do?noticeNo=${noticeOne.noticeNo }">수정하기</a>
-		                    <a href="javascript:void(0)" onclick="checkDelete();">삭제하기</a>
-                        </c:if>
+                    	<form action="/notice/modify.do" method="post">
+		                    <table class="boardtable">
+		                    	<tr>
+									<td>
+										<input type="hidden" name="noticeNo" value="${requestScope.notice.noticeNo }">
+										<label>글번호</label>
+										<span>${requestScope.notice.noticeNo }</span>
+									</td>
+									<td>
+										<label>작성일</label>
+										<span>${requestScope.notice.noticeDate }</span>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<label><b>제목 : <input type="text" id="" name="noticeSubject" value="${notice.noticeSubject }"></b></label>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<label><b>내용 : <textarea rows="30" cols="40" id="" name="noticeContent">${notice.noticeContent }</textarea></b></label>
+									</td>							
+								</tr>
+		                    </table>
+		                    <input type="submit" value="수정하기">
+							<input type="reset" value="초기화">
+	                    </form>
 	                </div>
                 </section>
             </main>
@@ -77,14 +77,5 @@
                 </ul>
             </footer>
         </div>
-        <script>
-		// /member/delete.do?memberId=${sessionScope.memberId }
-			function checkDelete() {
-				const noticeNo = '${requestScope.noticeOne.noticeNo}';
-				if(confirm("삭제하시겠습니까?")){
-					location.href = "/notice/delete.do?noticeNo=" + noticeNo;
-				}
-			}
-		</script>
 	</body>
 </html>

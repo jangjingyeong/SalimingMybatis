@@ -13,16 +13,16 @@ import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class InsertController
+ * Servlet implementation class DeleteController
  */
-@WebServlet("/notice/insert.do")
-public class InsertController extends HttpServlet {
+@WebServlet(name = "NoticeDeleteController", urlPatterns = { "/notice/delete.do" })
+public class DeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertController() {
+    public DeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,31 +31,26 @@ public class InsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/help/insert.jsp").forward(request, response);
+		// DELETE FROM NOTICE_TBL WHERE NOTICE_NO =?
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		NoticeService service = new NoticeService();
+		int result = service.deleteNotice(noticeNo);
+		if(result > 0) {
+			// 성공 -> 공지사항 목록 이동 
+			response.sendRedirect("/notice/list.do");
+		} else {
+			request.setAttribute("msg", "공지사항 삭제가 완료되지 않았습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String noticeSubject = request.getParameter("noticeSubject");
-		String noticeContent = request.getParameter("noticeContent");
-		
-		Notice notice = new Notice(noticeSubject, noticeContent);
-		NoticeService service = new NoticeService();
-		int result = service.insertNotice(notice);
-		if(result > 0) {
-			// 성공 
-			request.getRequestDispatcher("/notice/list.do").forward(request, response);
-		} else {
-			request.setAttribute("msg", "공지사항 등록이 완료되지 않았습니다.");
-			RequestDispatcher view 
-			= request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed.jsp");
-			view.forward(request, response);
-		}
-		
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

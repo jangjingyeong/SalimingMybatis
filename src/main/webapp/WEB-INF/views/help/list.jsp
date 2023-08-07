@@ -74,16 +74,7 @@
                     </table>
             
                     <div class="page">
-<%--                         ${pageNavi } --%>
-<!--                         <ul class="pagination"> -->
-<!--                             <li><a href="#" class="first"><img class="arrowKey" src="/resources/img/왼쪽페이지.png"></a></li> -->
-<!--                             <li><a href="#" class="num">1</a></li> -->
-<!--                             <li><a href="#" class="num">2</a></li> -->
-<!--                             <li><a href="#" class="num">3</a></li> -->
-<!--                             <li><a href="#" class="num">4</a></li> -->
-<!--                             <li><a href="#" class="num">5</a></li> -->
-<!--                             <li><a href="#" class="last"><img class="arrowKey" src="/resources/img/오른쪽페이지.png"></a></li> -->
-<!--                         </ul> -->
+                        ${pageNavi }
                     </div>
                 </section>
             </main>
@@ -92,7 +83,6 @@
                     <li><a href="#">회사소개</a></li>
                     <li><a href="#">이용약관</a></li>
                     <li><a href="#">개인정보 처리방침</a></li>
-                    <!-- <li><a href="#">맞다</a></li> -->
                 </ul>
             </footer>
         </div>

@@ -9,22 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jdt.internal.compiler.parser.RecoveredRequiresStatement;
-
 import member.model.service.MemberService;
-import member.model.vo.Member;
 
 /**
- * Servlet implementation class MyInfoController
+ * Servlet implementation class DeleteController
  */
-@WebServlet("/member/myInfo.do")
-public class MyInfoController extends HttpServlet {
+@WebServlet("/member/delete.do")
+public class DeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyInfoController() {
+    public DeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +30,23 @@ public class MyInfoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("id");
 		MemberService service = new MemberService();
-		Member member = service.selectOneById(memberId);
-		
-		if(member != null) {
-			request.setAttribute("member", member); // 꼭 안써줘도 되지만 일반적으로 같이 씀 
-			// 앞은 키값이라 "" 뒤는 변수명 
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/myInfo.jsp");
+		// 쿼리문 DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?
+		String memberId = request.getParameter("memberId"); 
+		int result = service.deleteMember(memberId);
+		if(result > 0) {
+			// 성공
+			// 페이지 이동 2가지~ 
+			// 1. with Data
+			request.setAttribute("msg", "회원 탈퇴 성공!");
+			request.setAttribute("url", "/member/logout.do");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/serviceSuccess.jsp");
 			view.forward(request, response);
+			// 2. without Data 
+//			 response.sendRedirect("/member/logout.do");
 		} else {
-			request.setAttribute("msg", "회원정보가 존재하지 않습니다.");
-			request.setAttribute("url", "/index.jsp");
+			// 실패 
+			request.setAttribute("msg", "회원 탈퇴를 완료하지 못했습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed.jsp");
 			view.forward(request, response);
 		}
@@ -54,6 +56,7 @@ public class MyInfoController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

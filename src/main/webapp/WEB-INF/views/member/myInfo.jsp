@@ -101,6 +101,7 @@
 	                            </div>
 	                            <div id="edit-btns" class="edit">
 	                                <button id="edit-btn">회원정보수정</button>
+	                                <a href="javascript:void(0)" onclick="checkDelete();">회원탈퇴</a>
 	                            </div>
                             </form>
                         </div>
@@ -116,5 +117,14 @@
                 </ul>
             </footer>
         </div>
+        <script>
+		// /member/delete.do?memberId=${sessionScope.memberId }
+			function checkDelete() {
+				const memberId = '${sessionScope.memberId}';
+				if(confirm("탈퇴하시겠습니까?")){
+					location.href = "/member/delete.do?memberId=" + memberId;
+				}
+			}
+		</script>
 	</body>
 </html>
