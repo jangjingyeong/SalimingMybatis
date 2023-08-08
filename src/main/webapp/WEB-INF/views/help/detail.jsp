@@ -62,11 +62,13 @@
 								</td>							
 							</tr>
 	                    </table>
-	                      <c:if test="${memberId eq 'admin' }">
-		                    <a href="/notice/modify.do?noticeNo=${noticeOne.noticeNo }">수정하기</a>
-		                    <a href="javascript:void(0)" onclick="checkDelete();">삭제하기</a>
-                        </c:if>
 	                </div>
+						<c:if test="${memberId eq 'admin' }">
+	                		<div id="a-tag">
+			                    <a href="/notice/modify.do?noticeNo=${noticeOne.noticeNo }">수정하기</a>
+			                    <a href="javascript:void(0)" onclick="checkDelete();">삭제하기</a>
+			                </div>
+                        </c:if>
                 </section>
             </main>
             <footer id="footer">

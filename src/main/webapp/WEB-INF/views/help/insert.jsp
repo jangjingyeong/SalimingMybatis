@@ -40,16 +40,22 @@
                     </div>
                 	<form action="/notice/insert.do" method="post">
                     <div class="actionArea">
-						<label>제목</label>
-						<input type="text" id="" name="noticeSubject">
-                    </div>
 	                    <table class="boardtable">
-	                        <label>내용</label>
-							<textarea rows="30" cols="40" id="" name="noticeContent"></textarea>
+                    		<tr>
+                    			<td>
+									<label><b>제목 : </b></label><input type="text" id="noticeSubject" name="noticeSubject">
+                    			</td>
+                    		</tr>
+                    		<tr>
+                    			<td>
+			                        <label><b>내용 : </b></label><textarea rows="30" cols="40" id="noticeContent" name="noticeContent"></textarea>
+                    			</td>
+                    		</tr>
 	                    </table>
-	                <div>
-	                	<input type="submit" value="작성">
-						<input type="reset" value="초기화">
+                    </div>
+	                <div id="buttons">
+	                	<input type="submit" value="작성"  id="submitbutton">
+						<input type="reset" value="초기화" id="resetbutton">
 	                </div>
             		</form>
                 </section>

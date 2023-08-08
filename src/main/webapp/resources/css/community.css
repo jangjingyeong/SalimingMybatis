@@ -54,6 +54,10 @@
     cursor: pointer;
 }
 
+.writeBtn:hover, .writeBtn:hover:active, .writeBtn:hover:focus {
+    background: #43A047;
+}
+
 .actionArea {
     width: 720px;
 }
@@ -124,3 +128,74 @@ th a:link, th a:visited {
 .page a:visited, .page a:link {
     color: #222;
 }
+
+
+
+.session>input {
+    font-family: 'SUITE-Regular';
+    outline: 0;
+    background: #f2f2f2;
+    width: 400px;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#submitbutton { 
+	font-family: 'SUITE-Regular';
+    outline: 0;
+    background: #4CAF50;
+    width: 80px;
+    border: 0;
+    padding: 5px;
+    color: #FFFFFF;
+    font-size: 15px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+#resetbutton {
+	font-family: 'SUITE-Regular';
+    outline: 0;
+    background: #ccc;
+    width: 80px;
+    border: 0;
+    padding: 5px;
+    color: #FFFFFF;
+    font-size: 15px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+
+#buttons {
+	margin-bottom : 30px;
+}
+
+#submitbutton:hover, #submitbutton:hover:active, #submitbutton:hover:focus {
+    background: #43A047;
+}
+
+#resetbutton:hover, #resetbutton:hover:active, #resetbutton:hover:focus {
+    background: #b0b0b0;
+}
+
+#a-tag {
+	margin-bottom : 30px;
+}
+
+#a-tag a {
+	padding : 5px 10px 5px 10px;
+	background: #4CAF50;
+	border-radius: 5px;
+}
+
+#a-tag a:link, #a-tag a:visited, #a-tag a:hover, #a-tag a:active {
+  color: white;
+}
+
